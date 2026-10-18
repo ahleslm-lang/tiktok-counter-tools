@@ -1,0 +1,67 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TikTok Counter Tools</title>
+<style>
+body{font-family:Arial,sans-serif;background:#f3f4f6;color:#222;margin:0}
+header{background:#111;color:white;text-align:center;padding:22px 10px}
+main{max-width:600px;margin:auto;padding:12px}
+.card{background:white;padding:18px;margin:14px 0;border-radius:12px}
+input{box-sizing:border-box;width:100%;padding:12px;margin:8px 0;border:1px solid #aaa;border-radius:7px}
+button{background:#e60045;color:white;padding:12px;border:0;border-radius:7px;width:100%}
+.result{font-weight:bold;overflow-wrap:anywhere}
+</style>
+</head>
+<body>
+<header>
+<h1>TikTok Counter Tools</h1>
+<p>Free TikTok calculators</p>
+</header>
+<main>
+<div class="card">
+<h2>Followers Counter</h2>
+<input id="followers" type="number" min="0" placeholder="Enter followers">
+<button onclick="countFollowers()">Count Followers</button>
+<p class="result" id="fr"></p>
+</div>
+<div class="card">
+<h2>Views and Likes</h2>
+<input id="views" type="number" min="0" placeholder="Total views">
+<input id="likes" type="number" min="0" placeholder="Total likes">
+<input id="comments" type="number" min="0" placeholder="Total comments">
+<button onclick="engage()">Calculate engagement</button>
+<p class="result" id="er"></p>
+</div>
+<div class="card">
+<h2>Earning Calculator</h2>
+<input id="ev" type="number" min="0" placeholder="Eligible views">
+<input id="rpm" type="number" min="0" step="0.01" placeholder="Estimated USD per 1000 views">
+<button onclick="earning()">Calculate earning</button>
+<p class="result" id="money"></p>
+<p>Estimate only. Actual earnings may differ.</p>
+</div>
+<div class="card">
+<h2>About</h2>
+<p>Free tools for TikTok creators. Not affiliated with TikTok.</p>
+</div>
+</main>
+<script>
+function n(id){return Math.max(0,Number(document.getElementById(id).value)||0)}
+function countFollowers(){
+document.getElementById('fr').textContent='Followers: '+n('followers').toLocaleString();
+}
+function engage(){
+let v=n('views'),l=n('likes'),c=n('comments');
+document.getElementById('er').textContent='Views: '+v.toLocaleString()+' | Likes: '+l.toLocaleString()+' | Comments: '+c.toLocaleString()+' | Engagement: '+(v?((l+c)/v*100).toFixed(2):'0')+'%';
+}
+function earning(){
+let total=n('ev')*n('rpm')/1000;
+document.getElementById('money').textContent='Estimated earning: $'+total.toFixed(2)+' USD';
+}
+</script>
+</body>
+  </html>
+  
